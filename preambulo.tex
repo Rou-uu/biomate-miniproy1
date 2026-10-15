@@ -145,3 +145,18 @@
   {\hfill$\square$\par\medskip}
 \crefname{ejercicio}{ejercicio}{ejercicios}
 \Crefname{ejercicio}{Ejercicio}{Ejercicios}
+
+%--------------------- Recuadro para desarrollos -------------------------
+%   \begin{desarrollo}[Título] … \end{desarrollo}
+% Para derivaciones que acompañan al texto sin interrumpirlo.  breakable deja
+% que el recuadro se parta entre páginas.
+\usepackage[most]{tcolorbox}
+\newtcolorbox{desarrollo}[1][]{%
+  enhanced, breakable,
+  colback=blue!3!white, colframe=blue!45!black,
+  boxrule=0pt, leftrule=2.5pt, arc=0pt, outer arc=0pt,
+  left=10pt, right=10pt, top=6pt, bottom=6pt,
+  before skip=10pt, after skip=10pt,
+  fonttitle=\bfseries, coltitle=blue!45!black, colbacktitle=blue!8!white,
+  before upper={\setlength{\parskip}{5pt}},
+  titlerule=0pt, title={#1}}

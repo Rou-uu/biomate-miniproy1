@@ -1034,7 +1034,7 @@ This model was converted to NetLogo as part of the projects: PARTICIPATORY SIMUL
   </linkShapes>
   <previewCommands>setup repeat 75 [ go ]</previewCommands>
   <experiments>
-    <experiment name="vuelos de Levy" repetitions="200" sequentialRunOrder="true" runMetricsEveryStep="false" timeLimit="20000">
+    <experiment name="vuelos de Levy" repetitions="1800" sequentialRunOrder="true" runMetricsEveryStep="false" timeLimit="20000">
       <setup>setup</setup>
       <go>go</go>
       <exitCondition><![CDATA[tick-fin >= 0]]></exitCondition>

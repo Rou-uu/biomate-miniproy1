@@ -102,7 +102,8 @@ Referencias: \textcite{devries2006}; \textcite{mackey1977};
   \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{largo_plazo_p1_pd.pdf}
-    \caption{Gráfica de $p_1(x)$ y $d(x)$ para diferentes parámetros variando cada uno.}
+    \caption{$p_1(x)$ contra $d(x) = c\,x$ con $c=0.5$: a la izquierda variando $a$ con $b=1$ y a la
+      derecha variando $b$ con $a=2$. Los puntos marcan los equilibrios.}
     \label{fig:largo-plazo-p1}
   \end{figure}
 
@@ -112,7 +113,8 @@ Referencias: \textcite{devries2006}; \textcite{mackey1977};
   \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{largo_plazo_p1_poblacion.pdf}
-    \caption{Gráfica de la población de glóbulos rojos en el tiempo usando $p_1(x)$ y $d(x)$ para diferentes parámetros.}
+    \caption{Población de glóbulos rojos $x_n$ con $p_1$, $c=0.5$ y $x_0=0.5$: a la izquierda variando $a$
+      con $b=1$ y a la derecha variando $b$ con $a=2$.}
     \label{fig:largo-plazo-p1-poblacion}
   \end{figure}
 
@@ -132,7 +134,9 @@ Referencias: \textcite{devries2006}; \textcite{mackey1977};
   \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{largo_plazo_p2_pd.pdf}
-    \caption{Gráfica de $p_2(x)$ y $d(x)$ para diferentes parámetros variando cada uno.}
+    \caption{$p_2(x)$ contra $d(x) = c\,x$ con $c=0.5$: a la izquierda variando $b$ con $\theta=1$ y $m=4$,
+      al centro variando $\theta$ con $b=2$ y $m=4$, y a la derecha variando $m$ con $b=2$ y $\theta=1$. Los
+      puntos marcan los equilibrios.}
     \label{fig:largo-plazo-p2}
   \end{figure}
 
@@ -144,15 +148,77 @@ Referencias: \textcite{devries2006}; \textcite{mackey1977};
   \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{largo_plazo_p2_poblacion.pdf}
-    \caption{Gráfica de la población de glóbulos rojos en el tiempo usando $p_2(x)$ y $d(x)$ para diferentes parámetros.}
+    \caption{Población de glóbulos rojos $x_n$ con $p_2$, $c=0.5$ y $x_0=0.5$: a la izquierda variando $b$
+      con $\theta=1$ y $m=4$, al centro variando $\theta$ con $b=2$ y $m=4$, y a la derecha variando $m$
+      con $b=2$ y $\theta=1$.}
     \label{fig:largo-plazo-p2-poblacion}
   \end{figure}
 
-  Vemos que para $m$, los valores de $4$ y $6$ generan osialaciones que no se estabilizan, mientras que para $m=2$ la población de glóbulos 
-  rojos tiende a un valor de equilibrio. 
+  Vemos que para $m$, los valores de $6$ y $10$ generan oscilaciones que no se estabilizan, mientras que para $m=2$ la población de glóbulos 
+  rojos tiende a un valor de equilibrio. En particular, cuando $m = 5.3$ la curva de población sí se estabiliza, pero con $m = 5.4$ deja de
+  hacerlo, lo que indica que existe un valor especial entre el rango $(5.3, 5.4)$ que hace que la población de glóbulos rojos se estabilice.
+  Investigando (principalmente preguntándole a Claude), encontré que ese punto está determinado por la siguiente expresión:
+
+  \begin{desarrollo}[¿De dónde sale la condición para $m$?]
+    \textbf{Idea.} El modelo es $x_{n+1} = f(x_n)$ con $f(x) = x - c\,x + p_2(x)$. Cerca del
+    equilibrio $x^*$, la distancia $x_n - x^*$ se multiplica cada día por $f'(x^*)$, así que la
+    población se estabiliza si
+    \[
+      |f'(x^*)| < 1 .
+    \]
+
+    \textbf{1. Equilibrio.} La producción es igual a la destrucción, $p_2(x^*) = c\,x^*$:
+    \[
+      \frac{b\,\theta^m}{\theta^m + (x^*)^m} = c
+      \qquad\Longrightarrow\qquad
+      \theta^m + (x^*)^m = \frac{b\,\theta^m}{c},
+      \qquad
+      (x^*)^m = \theta^m\left(\frac{b}{c} - 1\right).
+    \]
+
+    \textbf{2. Derivada de $p_2$.} Con la regla del cociente, y factorizando:
+    \[
+      p_2'(x) = b\,\theta^m\,\frac{(\theta^m + x^m) - m\,x^m}{(\theta^m + x^m)^2}
+              = \underbrace{\frac{b\,\theta^m}{\theta^m + x^m}}_{=\,c \text{ en } x^*}
+                \left(1 - m\,\frac{x^m}{\theta^m + x^m}\right).
+    \]
+
+    \textbf{3. Evaluar en $x^*$.} Con las dos igualdades del paso 1,
+    \[
+      \frac{(x^*)^m}{\theta^m + (x^*)^m} = \frac{\theta^m\,(b/c - 1)}{b\,\theta^m/c} = 1 - \frac{c}{b},
+    \]
+    así que
+    \[
+      f'(x^*) = 1 - c + p_2'(x^*)
+              = 1 - c + c\left[1 - m\left(1 - \frac{c}{b}\right)\right]
+              = \boxed{\,1 - m\,c\left(1 - \frac{c}{b}\right)} .
+    \]
+    La $\theta$ se cancela: cambia la escala del equilibrio, pero no su estabilidad.
+
+    \textbf{4. Estabilidad.} Cuando hay equilibrio ($b > c$), el término $m\,c\,(1 - c/b)$ es
+    positivo, así que $f'(x^*) < 1$ se cumple siempre. La condición que importa es
+    $f'(x^*) > -1$, que es la expresión de abajo.
+  \end{desarrollo}
+
+  \[
+  1 - m\,c\left(1 - \frac{c}{b}\right) > -1 \;\Rightarrow\; m\,c\left(1 - \frac{c}{b}\right) < 2 \;\Rightarrow\; m < \frac{2}{c\,(1 - c/b)} = m_c
+  \]
+
+  Donde $m_c$ es ese valor que buscamos. Para los parámetros específicos que estamos usando ($b = 2$ y $c = 0.5$), tenemos que 
+  $m_c = \frac{2}{0.5(1 - \frac{0.5}{2})} = \frac{2}{0.5(0.75)} = \frac{2}{0.375} \approx 5.33$. Con esto entonces, encontramos que el punto
+  $m_c$ representa el límite de valores de $m$ para que la población de glóbulos rojos sea estable.
 
 
-  \item \pendiente{}
+  \item La función que estamos usando en este momento es $x_{n+1} = x_n - d(x_n) + p(x_n)$. Ahora, separando cada sección de la función
+  tenemos que $x_n$ representa los globulos rojos del turno $x_n$, $-d(x_n)$ representa la cantidad de glóbulos rojos que se pierden 
+  por muerte celular, y $p(x_n)$ representa la cantidad de glóbulos rojos que se generan. La idea será retrasar la producción de globulos
+  rojos por unos días, manteniendo la destrucción y cantidad en el turno $n$ de globulos rojos igual. Ahora, sea $k$ la cantidad de días
+  que queremos retrasar la producción de globulos rojos, entonces la función se modifica a $x_{n+1} = x_n - d(x_n) + p(x_n - k)$.
+
+  Algunos cambios que trae este nuevo modelo es que ahora, necesitamos tener $k$ condiciones iniciales. También debido a que la cantidad
+  producida de globulos rojos va retrasada por $k$ días, el equilibrio al que se llega en más inestable debido a la tardía respuesta del
+  cuerpo a la cantidad de globulos rojos que hay en el cuerpo previo al cálculo para hacer más.
+  
   \item \pendiente{}
   \item \pendiente{}
 \end{enumerate}
