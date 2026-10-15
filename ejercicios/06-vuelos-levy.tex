@@ -1,0 +1,107 @@
+%=======================================================================
+%  Ejercicio 6 — Vuelos de Lévy en el modelo de hormigas forrajeras (Tipo 2)
+%=======================================================================
+\setcounter{ejercicio}{5}   % el enunciado lo numera 6
+\begin{ejercicio}[Tipo 2]\label{ej:levy}
+\textbf{Aplicación de vuelos de Lévy en el modelo de hormigas forrajeras.}
+En este ejercicio, explorarás una estrategia de movimiento alternativa para las
+hormigas en el modelo de «Ants» de la biblioteca de NetLogo. Normalmente, las
+hormigas realizan caminatas aleatorias para buscar comida. Modificarás este
+comportamiento implementando los \emph{vuelos de Lévy}, un patrón de movimiento
+que se utiliza frecuentemente en biología para describir estrategias de búsqueda
+eficientes.
+
+\paragraph{Parte 1: Entendiendo el modelo de hormigas}
+\begin{enumerate}
+  \item \textbf{Explora el modelo existente:} Ejecuta el modelo de «Ants» de la
+    biblioteca de NetLogo para observar el comportamiento predeterminado de las
+    hormigas mientras buscan comida. Presta atención a cómo se mueven y
+    responden a los rastros de feromonas. Siéntete libre de modificar el
+    contexto, mira cómo se comporta en los límites.
+  \item \textbf{Comportamiento de caminata aleatoria:} Analiza el movimiento de
+    las hormigas en ausencia de comida. Demuestra a través de observaciones que,
+    cuando no hay comida ni feromonas presentes, las hormigas realizan una
+    caminata aleatoria.
+    \begin{itemize}
+      \item Mide la distribución de las longitudes de paso y los ángulos de giro
+        a lo largo del tiempo.
+      \item Confirma que, sin estímulos externos (como comida o feromonas), el
+        movimiento de las hormigas coincide con las características de una
+        caminata aleatoria.
+    \end{itemize}
+\end{enumerate}
+
+\paragraph{Parte 2: Introducción a los vuelos de Lévy}
+Los vuelos de Lévy se caracterizan por pasos cortos intercalados con pasos
+largos; los cortos son más frecuentes que los largos, lo que permite una
+exploración más eficiente en entornos escasos.
+\begin{enumerate}
+  \item \textbf{Descripción matemática:} Un vuelo de Lévy se modela con
+    longitudes de paso que siguen una distribución de ley de potencias:
+    \[
+      P(l) \propto l^{-\mu},
+    \]
+    donde $l$ es la longitud del paso y $\mu$ es el exponente que controla la
+    distribución. Típicamente, $1<\mu\le 3$ para sistemas biológicos. Realiza
+    las gráficas para $P(l)$ con tres valores de $\mu$. ¿Qué pasa conforme el
+    valor crece? ¿Cómo lo interpretas si haces una caminata por CU?
+  \item \textbf{Beneficios de los vuelos de Lévy:} Discute la eficiencia de los
+    vuelos de Lévy para buscar recursos (como comida) escasos, en comparación
+    con las caminatas aleatorias. ¿A qué animales podría beneficiar? ¿A los que
+    vuelan, nadan o corren?
+\end{enumerate}
+
+\paragraph{Parte 3: Modificación del movimiento de las hormigas}
+\begin{enumerate}
+  \item \textbf{Implementación de vuelos de Lévy:} Modifica el modelo de
+    NetLogo para que las hormigas sigan un patrón de vuelo de Lévy en lugar de
+    una caminata aleatoria simple. Ajusta el código para generar longitudes de
+    paso de acuerdo con una distribución de ley de potencias.
+  \item \textbf{Simulación y comparación:} Ejecuta el modelo modificado y
+    observa las diferencias en la eficiencia de búsqueda de comida entre las
+    hormigas que usan vuelos de Lévy y aquellas que usan la caminata aleatoria
+    predeterminada.
+\end{enumerate}
+
+\paragraph{Parte 4: Análisis y discusión}
+\begin{enumerate}
+  \item \textbf{Análisis de eficiencia:} Mide y compara el tiempo que tardan
+    las hormigas en encontrar comida usando ambos patrones de movimiento (vuelos
+    de Lévy vs.\ caminata aleatoria). Recuerda que estás realizando simulaciones
+    aleatorias, una simulación no basta, debes poder medir la media y su
+    desviación estándar.
+  \item ¿En qué condiciones ambientales los vuelos de Lévy superan a las
+    caminatas aleatorias?
+\end{enumerate}
+Añade tu código en un archivo separado.
+\end{ejercicio}
+
+\begin{solucion}
+
+\paragraph{Parte 1}
+\begin{enumerate}
+  \item \pendiente{}
+  \item \pendiente{}
+\end{enumerate}
+
+\paragraph{Parte 2}
+\begin{enumerate}
+  \item \pendiente{}
+  \item \pendiente{}
+\end{enumerate}
+
+\paragraph{Parte 3}
+\begin{enumerate}
+  \item \pendiente{}
+  \item \pendiente{}
+\end{enumerate}
+
+\paragraph{Parte 4}
+\begin{enumerate}
+  \item \pendiente{}
+  \item \pendiente{}
+\end{enumerate}
+
+\paragraph{Código}
+\pendiente{nombre del archivo con el modelo modificado}
+\end{solucion}

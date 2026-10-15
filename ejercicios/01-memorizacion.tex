@@ -1,0 +1,93 @@
+%=======================================================================
+%  Ejercicio 1 — Un modelo para la tasa de memorización (Tipo 1)
+%=======================================================================
+\setcounter{ejercicio}{0}   % el enunciado lo numera 1
+\begin{ejercicio}[Tipo 1]\label{ej:memorizacion}
+\textbf{Un modelo para la tasa de memorización.}
+El aprendizaje humano es un proceso extremadamente complejo. Tanto la biología,
+como la fisiología, la neurología, la química y la psicología, aun con los
+tremendos avances tecnológicos, están lejos de entenderlo. Sin embargo, aunque
+esperamos que los modelos más simples de aprendizaje no engloben toda esa
+complejidad, nos pueden ayudar a entender aspectos limitados del proceso de
+aprendizaje. En este problema vas a estudiar un modelo simple del proceso de
+memorización de listas. El modelo está basado en la suposición de que el rango
+de aprendizaje es proporcional a la cantidad de lo que queda por aprender. Así
+pues, sea $L(t)$ la fracción de la lista ya memorizada al tiempo $t$, de manera
+que $L=0$ corresponde a no saber nada de la lista y $L=1$ a haber memorizado ya
+la lista entera.
+
+La ecuación diferencial que nos reproduce dicho comportamiento es:
+\begin{equation}\label{eq:memorizacion}
+  \frac{dL}{dt} = \kappa\,(1-L).
+\end{equation}
+Todas las personas son diferentes, a distintas personas les tomará distinta
+cantidad de tiempo memorizar una lista, es decir, cada quien tiene su valor
+personal $\kappa$. La forma de obtener tu valor es la siguiente:
+\begin{enumerate}
+  \item Usando las listas de números de tres dígitos (\cref{tab:listas})
+    deberás recolectar la siguiente información para determinar tu valor de
+    $\kappa$ como sigue:
+    \begin{enumerate}[label=(\alph*)]
+      \item Durante un minuto estudiarás y tratarás de memorizar los elementos
+        de la primera lista.
+      \item Después pondrás a prueba cuántos números recuerdas escribiendo los
+        que recuerdes en el orden correcto respecto a la lista. Si no recuerdas
+        un número deja un espacio en blanco.
+      \item Durante otro minuto estudiarás la misma lista de números y tratarás
+        de memorizarla de nuevo.
+      \item Nuevamente, pondrás a prueba tu memoria escribiendo los números que
+        recuerdes.
+    \end{enumerate}
+    Repite este proceso diez veces (o hasta que hayas aprendido la lista por
+    completo). Puntúa todas las pruebas que hiciste y realiza una gráfica del
+    tiempo $t$, la cantidad de tiempo gastada memorizando la lista, contra $L$,
+    la fracción de la lista aprendida.
+  \item Usa estos datos para aproximar tu valor $\kappa$ personal y compara los
+    datos con las predicciones del modelo. ¿Cuánto tardarás en aprender una
+    lista de 20 y 100 números de tres dígitos?
+  \item Repite el proceso de la parte 1 con las otras dos listas y calcula tu
+    valor de $\kappa$ para esos casos. ¿Es tu valor de $\kappa$ realmente una
+    constante o mejora con la práctica? Si suponemos que mejora con la práctica,
+    ¿cómo modificarías el modelo para incluir eso?
+\end{enumerate}
+
+\begin{table}[H]
+  \centering
+  \caption{Listas de números de tres dígitos.}
+  \label{tab:listas}
+  \begin{tabular}{cccc}
+    \toprule
+    Lista 1 & Lista 2 & Lista 3 & Lista 4 \\
+    \midrule
+    482 & 145 & 793 & 799 \\
+    812 & 909 & 506 & 326 \\
+    311 & 969 & 687 & 604 \\
+    993 & 206 & 839 & 505 \\
+    705 & 532 & 503 & 498 \\
+    470 & 507 & 541 & 532 \\
+    297 & 232 & 477 & 161 \\
+    499 & 536 & 348 & 607 \\
+    461 & 281 & 851 & 869 \\
+    934 & 534 & 130 & 330 \\
+    683 & 391 & 462 & 644 \\
+    872 & 332 & 605 & 303 \\
+    118 & 270 & 678 & 328 \\
+    952 & 442 & 888 & 403 \\
+    333 & 683 & 990 & 787 \\
+    229 & 812 & 779 & 290 \\
+    980 & 718 & 453 & 474 \\
+    275 & 960 & 752 & 355 \\
+    843 & 145 & 536 & 804 \\
+    244 & 721 & 300 & 550 \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+\end{ejercicio}
+
+\begin{solucion}
+\begin{enumerate}
+  \item \pendiente{}
+  \item \pendiente{}
+  \item \pendiente{}
+\end{enumerate}
+\end{solucion}

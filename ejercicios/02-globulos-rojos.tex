@@ -1,0 +1,61 @@
+%=======================================================================
+%  Ejercicio 2 — Sobre la población de glóbulos rojos (Tipo 1)
+%=======================================================================
+\setcounter{ejercicio}{1}   % el enunciado lo numera 2
+\begin{ejercicio}[Tipo 1]\label{ej:globulos}
+\textbf{Sobre la población de glóbulos rojos.}
+En este ejercicio vamos a explorar un modelo para describir el tamaño de la
+población de glóbulos rojos en el cuerpo humano. Sea $x_n$ el número de glóbulos
+rojos en el cuerpo en el día $n$. El propósito es escribir una función para
+describir la cantidad de glóbulos rojos en el día $n+1$. Dicha función debe
+quedar descrita en términos de la cantidad de células que se pierden debido a
+muerte celular en el día $n$ y en la producción de células el mismo día. Si
+$d(x_n)$ representa el número de glóbulos rojos perdidos debido a la muerte
+celular en el día $n$ y $p(x_n)$ el número de células rojas ganadas debido a la
+producción de la médula ósea en el mismo día, entonces podemos escribir:
+\begin{equation}\label{eq:globulos}
+  x_{n+1} = x_n - d(x_n) + p(x_n),
+\end{equation}
+esto es, \emph{el número de glóbulos producidos mañana es el número de glóbulos
+rojos de hoy menos aquellos que son destruidos más los que son producidos}. Es
+ampliamente aceptado que una fracción constante $c$ de glóbulos rojos es
+destruida cada día, por lo que $d(x_n) = c\,x_n$. Donde hay menos información es
+en la producción de glóbulos rojos, pero se cree que $p(x_n)$ se comporta como
+curvas de Ricker. Básicamente, en baja presencia de glóbulos rojos la médula
+ósea produce más mientras que a altas poblaciones de glóbulos produce menos. Dos
+posibles formas para $p(x_n)$ son:
+\[
+  p_1(x) = a\,x\,e^{-bx}, \qquad a>0,\ b>0,
+\]
+y
+\[
+  p_2(x) = \frac{b\,\theta^m x}{\theta^m + x^m}, \qquad b>0,\ \theta>0,\ m>0.
+\]
+\begin{itemize}
+  \item Realiza gráficas para $p_1(x)$ y para $p_2(x)$ para diferentes
+    parámetros. ¿Qué significados tienen los parámetros en cada función? ¿Qué
+    pasa cuando son pequeños y cuando son grandes?
+  \item ¿Cómo modifica a largo plazo la selección de parámetros en cada $p(x)$
+    a la población total $x_{n+1}$? Compara $p(x)$ contra $d(x)$.
+  \item Es sabido que la producción de glóbulos rojos toma varios días. ¿Cómo
+    modificarías el modelo para tomar en cuenta ese retraso?
+  \item Revisa el artículo \parencite{tetschke2018}. ¿Cuál es la diferencia
+    entre el modelo que se propone en ese artículo y el que aquí se presenta?
+    Realiza una breve descripción.
+  \item En la realidad obtener los parámetros para un modelo puede ser
+    complicado. ¿Puedes adaptar algunos parámetros del artículo para este
+    modelo?
+\end{itemize}
+Referencias: \textcite{devries2006}; \textcite{mackey1977};
+\textcite{tetschke2018}.
+\end{ejercicio}
+
+\begin{solucion}
+\begin{enumerate}
+  \item \pendiente{}
+  \item \pendiente{}
+  \item \pendiente{}
+  \item \pendiente{}
+  \item \pendiente{}
+\end{enumerate}
+\end{solucion}

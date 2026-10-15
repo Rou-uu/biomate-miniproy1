@@ -1,0 +1,34 @@
+# Todo lo que genera LaTeX vive aquí
+out/
+
+# PDF compilado y sincronización con el editor: se regeneran con `make`.
+# La diagonal inicial ancla el patrón a la raíz, así que las figuras en PDF
+# de figuras/ no se ven afectadas.  Si guardas aquí un PDF que SÍ quieres
+# versionar (el enunciado de la tarea, por ejemplo), añade: !enunciado.pdf
+/*.pdf
+/*.synctex.gz
+
+# Red de seguridad por si alguien compila sin el Makefile (o desde Overleaf),
+# porque entonces los auxiliares sí caen en la raíz.
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.loa
+*.lof
+*.log
+*.lol
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# macOS
+.DS_Store
+
+# Paquete para subir a Overleaf a mano (make zip)
+overleaf.zip

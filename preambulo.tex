@@ -1,0 +1,141 @@
+%=======================================================================
+%  preambulo.tex — paquetes, estilos y macros
+%
+%  Recortado para el miniproyecto: sin pgfplots (las gráficas entran como
+%  imágenes desde figuras/), sin algoritmos y sin entornos tipo teorema.
+%=======================================================================
+
+%----------------------- Codificación e idioma -------------------------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+% El ORDEN de las opciones importa y es la causa número uno de que un documento
+% en español no compile: las opciones es-* las declara spanish.ldf, así que
+% 'spanish' tiene que ir ANTES que ellas.  Con main=spanish babel pospone la
+% carga del español y aborta con «Unknown option 'es-tabla'»; y como pdflatex
+% termina con error, latexmk nunca llega a ejecutar biber y el PDF sale con
+% todas las citas en [?].  El idioma principal es el último declarado.
+%   es-tabla          -> «Tabla» en vez de «Cuadro»
+%   es-nodecimaldot   -> no toca el punto decimal en modo matemático
+%   es-noshorthands   -> desactiva los atajos < > " que rompen las flechas de TikZ
+\usepackage[english,spanish,es-tabla,es-nodecimaldot,es-noshorthands]{babel}
+\usepackage{csquotes}          % biblatex lo exige cuando hay babel
+
+\usepackage{lmodern}
+\usepackage{microtype}
+
+%----------------------------- Geometría -------------------------------
+\usepackage[letterpaper, margin=1in]{geometry}
+
+\usepackage{setspace}
+\setstretch{1.2}
+\setlength{\emergencystretch}{3em}  % último recurso contra renglones desbordados
+
+%---------------------------- Matemáticas ------------------------------
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+
+%------------------------ Figuras, tablas, código ----------------------
+\usepackage{graphicx}
+\graphicspath{{figuras/}}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{subcaption}             % varias gráficas lado a lado en una figura
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+% Dentro de flotantes y de sus leyendas se vuelve al interlineado sencillo.
+% setspace ya lo hace para los flotantes normales, pero NO para los colocados
+% con [H]; este parche cubre ambos casos.  Va después de \usepackage{float}.
+\makeatletter
+\g@addto@macro\@floatboxreset{\def\baselinestretch{1}\normalsize}
+\makeatother
+
+%------------------- Listados de código --------------------------------
+% El ejercicio 6 pide el código en un archivo aparte; si quieres mostrar
+% fragmentos aquí: \lstinputlisting[firstline=..,lastline=..]{archivo.nlogo}
+\usepackage{listings}
+\lstdefinestyle{codigo}{
+  basicstyle=\setstretch{1}\ttfamily\footnotesize,   % \setstretch va primero
+  keywordstyle=\bfseries,
+  commentstyle=\itshape\color{gray!70!black},
+  stringstyle=\color{teal!70!black},
+  numbers=left, numberstyle=\tiny, numbersep=6pt,
+  frame=tb, breaklines=true, showstringspaces=false,
+  captionpos=b, xleftmargin=1.5em
+}
+\lstset{style=codigo}
+\lstset{extendedchars=true, inputencoding=utf8,
+  literate=%
+  {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+  {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+  {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {ü}{{\"u}}1 {Ü}{{\"U}}1
+  {¿}{{?`}}1 {¡}{{!`}}1
+}
+\renewcommand{\lstlistingname}{Listado}
+
+%------------------------- Notas de trabajo ----------------------------
+% \pendiente{...} marca en rojo lo que falta escribir.  Se usa vacío —\pendiente{},
+% que imprime «[pendiente]»— o con una nota de QUÉ va en ese hueco, nunca de cómo
+% escribirlo.  Al terminar, descomenta la última línea y todas las notas
+% desaparecen sin tener que borrarlas una por una.
+\newcommand{\pendiente}[1]{%
+  \textcolor{red!70!black}{[\textbf{pendiente}%
+    % misma prueba de «argumento vacío» que el entorno ejercicio
+    \if\relax\detokenize{#1}\relax\else\textbf{:}\ #1\fi]}}
+%\renewcommand{\pendiente}[1]{}
+
+%--------------------------- Bibliografía ------------------------------
+% APA 7ª edición: el enunciado ya cita en autor-año, «(Tetschke, 2018)».
+% \DeclareLanguageMapping NO es opcional: sin él la lista sale con «Retrieved
+% from» y demás en inglés aunque el documento esté en español.
+% Se cita con \parencite{x} -> (Tetschke et al., 2018) y \textcite{x}.
+\usepackage[style=apa, backend=biber]{biblatex}
+\DeclareLanguageMapping{spanish}{spanish-apa}
+\addbibresource{bibliografia.bib}
+
+%--------------------------- Hipervínculos -----------------------------
+% Ligas activas pero en negro, que es lo adecuado para imprimir.  hyperref se
+% carga casi al final; cleveref SIEMPRE después de hyperref.
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  pdftitle={Biología Matemática I — Miniproyecto 1},
+  pdfauthor={José Rubén Alfaro Gónzalez},
+}
+% Ligas en color para la etapa de escritura:
+%\hypersetup{colorlinks=true, linkcolor=red!70!black,
+%            citecolor=green!45!black, urlcolor=cyan!70!black}
+
+% A cleveref hay que pasarle el idioma A MANO: no lo lee de babel, y sin esto
+% escribe «Chapter 4» en pleno texto en español.  El último idioma gana.
+\usepackage[english,spanish,nameinlink,noabbrev]{cleveref}
+% En español cleveref usa «apartado» y «Cuadro»; aquí se prefiere el uso mexicano
+\crefname{section}{secci\'on}{secciones}
+\Crefname{section}{Secci\'on}{Secciones}
+\crefname{table}{tabla}{tablas}
+\Crefname{table}{Tabla}{Tablas}
+
+%--------------------- Ejercicios ----------------------------------------
+% Va después de cleveref porque registra sus propios nombres.
+%   \begin{ejercicio}             -> «Ejercicio 3»
+%   \begin{ejercicio}[Tipo 1]     -> «Ejercicio 3 (Tipo 1)»
+%   \begin{solucion} … \end{solucion}  cierra con un cuadrito.
+% Con \label{ej:...} dentro del entorno, \Cref{ej:...} escribe «Ejercicio 3».
+% Como sólo se resuelven el 1, el 2 y el 6, cada archivo fija su número con
+% \setcounter antes de abrir el entorno: así conserva el del enunciado.
+\newcounter{ejercicio}
+\newenvironment{ejercicio}[1][]{%
+  \refstepcounter{ejercicio}%
+  \bigskip\par\noindent
+  {\bfseries\large Ejercicio \theejercicio
+   % prueba estándar de «argumento opcional vacío»: \ifx falla aquí porque
+   % \newcommand define la macro como \long y \@empty no lo es.
+   \if\relax\detokenize{#1}\relax\else\ (#1)\fi}%
+  \par\nobreak\smallskip\noindent\ignorespaces}
+  {\par\medskip}
+\newenvironment{solucion}
+  {\par\smallskip\noindent\textit{Soluci\'on.}\ \ignorespaces}
+  {\hfill$\square$\par\medskip}
+\crefname{ejercicio}{ejercicio}{ejercicios}
+\Crefname{ejercicio}{Ejercicio}{Ejercicios}

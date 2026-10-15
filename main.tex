@@ -1,14 +1,60 @@
-\documentclass{article}
-\usepackage{graphicx} % Required for inserting images
+%=======================================================================
+%  Biología Matemática I — Miniproyecto 1  (ejercicios 1, 2 y 6)
+%  José Rubén Alfaro Gónzalez
+%
+%  Compilar:  make        (PDF en la raíz, auxiliares en out/)
+%  Un archivo por ejercicio en ejercicios/: así cada uno se lee, se edita y
+%  se comenta por separado, y reordenarlos es mover una línea de aquí.
+%=======================================================================
+\documentclass[12pt,letterpaper]{article}
 
-\title{MiniProyecto 1 - Bio Mate}
-\author{José Rubén Alfaro Gónzalez}
-\date{October 2026}
+\input{preambulo}
+
+\newcommand{\curso}{Biología Matemática I}
+\newcommand{\tarea}{Miniproyecto 1}
+\newcommand{\entrega}{Ejercicios 1, 2 y 6}   % vacío lo omite
+
+%------------------------- Autores -------------------------------------
+% Un \autor{nombre}{cuenta} por integrante del equipo, en el orden en que van
+% a aparecer.  El número de cuenta puede ir vacío: \autor{Nombre}{} imprime
+% sólo el nombre.  Agregar a alguien es agregar un renglón aquí.
+\newcommand{\autores}{%
+  \autor{José Rubén Alfaro Gónzalez}{\pendiente{cuenta}}%
+}
+
+% El \mbox mantiene juntos nombre y cuenta: sin él, un renglón lleno parte el
+% nombre a la mitad y la cuenta queda huérfana en el siguiente.
+\newcommand{\autor}[2]{%
+  \mbox{#1\if\relax\detokenize{#2}\relax\else\ (#2)\fi}%
+  \hspace{1.2em plus 0.8em}\ignorespaces}
 
 \begin{document}
 
-\maketitle
+%------------------------- Encabezado ----------------------------------
+% Los autores van bajo la línea, a todo lo ancho: así el encabezado aguanta
+% igual un autor que un equipo de cinco, sin reacomodar nada.
+\noindent
+\begin{minipage}[t]{0.62\textwidth}
+  \curso\\[2pt]
+  {\bfseries\large\tarea}
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.34\textwidth}
+  \raggedleft\today
+\end{minipage}
+\par\vspace{2pt}
+\if\relax\detokenize\expandafter{\entrega}\relax\else\noindent{\small\entrega}\par\vspace{2pt}\fi
+\vspace{1pt}\hrule\vspace{5pt}
+% \raggedright: la lista de nombres no se justifica, así no salen renglones
+% flojos (underfull) cuando un \mbox no cabe y se va completo al siguiente.
+{\small\raggedright\noindent\autores\unskip\par}
+\vspace{\baselineskip}
 
-\section{Introduction}
+%------------------------- Ejercicios ----------------------------------
+\input{ejercicios/01-memorizacion}
+\input{ejercicios/02-globulos-rojos}
+\input{ejercicios/06-vuelos-levy}
+
+\printbibliography
 
 \end{document}
