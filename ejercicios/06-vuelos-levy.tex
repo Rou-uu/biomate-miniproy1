@@ -159,9 +159,9 @@ Revisando el código, vi que la sección que se encarga de la aleatoriedad del m
 
 \paragraph{Parte 4}
 \begin{enumerate}
-  \item Para cada $\mu$ realice 600 simulaciones, y para cada simulación registré el tick en el que la primera 
+  \item Realicé 600 simulaciones con la caminata aleatoria original y 1800 para cada valor de $\mu$, y para cada simulación registré el tick en el que la primera 
   hormiga encontró cada uno de los montones, cuando todos los montones fueron descubiertos y cuando terminaron 
-  de llevar la comida al nido. Primero, veremos por el tiempo que llevo llevar toda la comida al nido y descubrir
+  de llevar la comida al nido. Primero, veremos el tiempo que llevó llevar toda la comida al nido y descubrir
   todos los montones:
 
   \begin{figure}[H]
@@ -172,11 +172,11 @@ Revisando el código, vi que la sección que se encarga de la aleatoriedad del m
     \label{fig:comparacion-busqueda}
   \end{figure}
 
-  Podemos ver que mientras que $\mu$ va creciendo, el tiempo que tardan en descubrir todos los montones y 
+  Podemos ver que mientras $\mu$ va creciendo, el tiempo que tardan en descubrir todos los montones y 
   llevar toda la comida al nido también crece. Además, podemos ver que la caminata aleatoria original y
-  los vuelos de levy cuando $\mu$ es $1.1$ tienen un rendimiento similar, siendo los vuelos de Levy
-  ligeramente más eficientes y más constantes respecto a sus tiempos. Ahora, veremos por cada uno de los 
-  montones de comida cuales fueron los tiempo de cada uno de los parámetros:
+  los vuelos de Lévy cuando $\mu$ es $1.1$ tienen un rendimiento similar, siendo los vuelos de Lévy
+  ligeramente más eficientes y más constantes respecto a sus tiempos. Ahora, veremos para cada uno de los 
+  montones de comida cuáles fueron los tiempos con cada uno de los parámetros:
 
   \begin{figure}[H]
     \centering
@@ -187,9 +187,34 @@ Revisando el código, vi que la sección que se encarga de la aleatoriedad del m
   \end{figure}
 
   De igual manera, podemos ver que tanto la versión original de las caminatas aleatorias como el vuelo de 
-  Levy con $\mu = 1.1$ fueron muy similares, mientras que los vuelos de Levy con $\mu = 2$ y $\mu = 3$ 
+  Lévy con $\mu = 1.1$ fueron muy similares, mientras que los vuelos de Lévy con $\mu = 2$ y $\mu = 3$ 
   fueron más lentos en descubrir los montones de comida y por lo tanto menos eficientes.
 
+  \begin{table}[H]
+    \centering
+    \caption{Media $\pm$ desviación estándar (en ticks) del tiempo de descubrimiento
+      de cada montón, de los tres montones y del fin de la comida.}
+    \label{tab:resultados-busqueda}
+    \begin{tabular}{lccccc}
+      \toprule
+      Modelo & Montón 1 & Montón 2 & Montón 3 & Todos & Fin de la comida \\
+      \midrule
+      Original (600)          & $32 \pm 11$ & $49 \pm 14$  & $63 \pm 20$  & $66 \pm 20$  & $1019 \pm 269$ \\
+      Lévy $\mu=1.1$ (1800)   & $31 \pm 12$ & $45 \pm 15$  & $56 \pm 15$  & $60 \pm 16$  & $881 \pm 149$ \\
+      Lévy $\mu=2$ (1800)     & $44 \pm 15$ & $67 \pm 24$  & $89 \pm 33$  & $96 \pm 31$  & $1431 \pm 601$ \\
+      Lévy $\mu=3$ (1800)     & $63 \pm 20$ & $115 \pm 43$ & $186 \pm 81$ & $194 \pm 78$ & $6220 \pm 3283$ \\
+      \bottomrule
+    \end{tabular}
+  \end{table}
+
+  \item Como mencionamos previamente, los vuelos de Lévy son eficientes para buscar una gran área de forma rápida,
+  y suelen ser más eficientes que las caminatas aleatorias en grandes distancias. En este ejercicio, el ``mundo'' de
+  las hormigas solamente mide $71 \times 71$ parches, es decir que usando una caminata aleatoria donde la desviación del
+  ángulo en cada paso es de aproximadamente $16^\circ$, la caminata aleatoria es más parecida a ir en línea recta en pasos
+  largos (como lo hacen los vuelos de Lévy cuando $\mu = 1.1$), y por lo tanto tienen eficiencias similares. En
+  terrenos más grandes con comida más escasa, los vuelos de Lévy serían más eficientes que las caminatas aleatorias,
+  y estas últimas tendrán un comportamiento más similar a los vuelos de Lévy con $\mu = 3$, donde los pasos 
+  largos son menos frecuentes y los cortos más frecuentes.
 
 \end{enumerate}
 

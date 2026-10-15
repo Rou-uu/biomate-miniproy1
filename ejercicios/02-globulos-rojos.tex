@@ -96,7 +96,62 @@ Referencias: \textcite{devries2006}; \textcite{mackey1977};
   Mientras el valor de $m$ crece en los intervalos $(1, \infty)$, la cantidad de células producidas
   es mayor, pero también se detiene más de golpe.
 
-  \item \pendiente{}
+  \item Cuando graficamos $p(x)$ y $d(x)$, podemos ver que la intersección de ambas curvas nos da un punto de equilibrio donde
+  la cantidad de células que se producen es igual a la cantidad de células que se destruyen. \textbf{Para $p_1$ tenemos la siguiente gráfica:}
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{largo_plazo_p1_pd.pdf}
+    \caption{Gráfica de $p_1(x)$ y $d(x)$ para diferentes parámetros variando cada uno.}
+    \label{fig:largo-plazo-p1}
+  \end{figure}
+
+  Además, podemos graficar la cantidad de glóbulos rojos en el tiempo usando la ecuación \eqref{eq:globulos} y ver 
+  cómo se comporta la población a largo plazo con la variación de los parámetros.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{largo_plazo_p1_poblacion.pdf}
+    \caption{Gráfica de la población de glóbulos rojos en el tiempo usando $p_1(x)$ y $d(x)$ para diferentes parámetros.}
+    \label{fig:largo-plazo-p1-poblacion}
+  \end{figure}
+
+  Cuando variamos $a$ sucede algo interesante. Si la curva de $p_1$ no tiene un punto de equilibrio con $d$,
+  la población de glóbulos rojos tiende a 0 eventualmente, mientras que la población de las curvas que sí tienen punto de equilibrio
+  tiende a ese valor asintóticamente. De igual manera si recordamos $a$ era la cantidad de células que produce la médula ósea por cada
+  glóbulo rojo, por lo que a valores altos, la población de glóbulos rojos oscila de forma más inestable dando brincos más grandes
+  en la población, mientras que a valores bajos, la población de glóbulos rojos se mantiene más estable y pegada al valor de equilibrio.
+
+  Por otro lado, al variar la tolerancia (es decir $b$) permitimos que el límite de la población de glóbulos rojos sea más alto o más bajo, pero 
+  no afecta la estabilidad de la población. Mantenemos siempre la misma forma de la gráfica solamente variando el punto de equilibrio.
+  De manera similar, al variar $c$ variamos la pendiente de la recta y por lo tanto, también modificamos el punto de intersección entre
+  $p$ y $d$, por lo que $c$ también es un modificador del equilibrio de la población. En caso de que $a < c$, la población de glóbulos 
+  rojos tiende a 0, mientras que si $a > c$, la población tiende a un valor de equilibrio o una oscilación alrededor de ese (como en $a = 40$).
+
+  \textbf{Para $p_2$ tenemos la siguiente gráfica:}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{largo_plazo_p2_pd.pdf}
+    \caption{Gráfica de $p_2(x)$ y $d(x)$ para diferentes parámetros variando cada uno.}
+    \label{fig:largo-plazo-p2}
+  \end{figure}
+
+  Si recordamos, la funcionalidad de los parámetros $b$ y $\theta$ es similar a la de $p_1$, por lo que su efecto en la población de 
+  glóbulos rojos es similar al que vimos en la parte anterior. Ahora, para el parámetro $m$, vemos que la reacción de la médula ósea
+  es más agresiva, por lo que la población de glóbulos rojos tiende a crecer más rápido, pero llegan a su punto de equilibrio
+  de forma más abrupta, cosa que ya habíamos visto previamente en el inciso 1. Con esto, las gráficas de población son las siguientes:
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{largo_plazo_p2_poblacion.pdf}
+    \caption{Gráfica de la población de glóbulos rojos en el tiempo usando $p_2(x)$ y $d(x)$ para diferentes parámetros.}
+    \label{fig:largo-plazo-p2-poblacion}
+  \end{figure}
+
+  Vemos que para $m$, los valores de $4$ y $6$ generan osialaciones que no se estabilizan, mientras que para $m=2$ la población de glóbulos 
+  rojos tiende a un valor de equilibrio. 
+
+
   \item \pendiente{}
   \item \pendiente{}
   \item \pendiente{}
