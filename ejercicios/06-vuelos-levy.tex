@@ -29,23 +29,6 @@ eficientes.
         movimiento de las hormigas coincide con las características de una
         caminata aleatoria.
     \end{itemize}
-
-    Revisando el código, vi que la sección que se encarga de la aleatoriedad del movimiento de las hormigas es la siguiente:
-    \begin{lstlisting}
-      to wiggle  ;; turtle procedure
-        rt random 40
-        lt random 40
-        if not can-move? 1 [ rt 180 ]
-      end
-      \end{lstlisting}
-
-      En resumen, lo que hace la función es buscar dos número aleatorios entre $0$ y $40$, y girar hacia la diferencia.
-      Esto de cierta forma podría representar una caminata aleatoria pues la dirección a la que van las hormigas si es 
-      "aleatoria", sin embargo, es una caminata aleatoria sesgada, pues la dirección a la que van las hormigas sigue una tendencia
-      a ir derecho. Podemos hacer un histograma de los angulos de giro de las hormigas y ver que el ángulo más frecuente es $0$, y el
-      histograma sigue una forma triangular. En una caminata aleatoria normal, no debería de haber mucha difrencia entre todos 
-      los ángulos, y deberían ser igualmente frecuentes.
-        
 \end{enumerate}
 
 \paragraph{Parte 2: Introducción a los vuelos de Lévy}
@@ -61,7 +44,9 @@ exploración más eficiente en entornos escasos.
     donde $l$ es la longitud del paso y $\mu$ es el exponente que controla la
     distribución. Típicamente, $1<\mu\le 3$ para sistemas biológicos. Realiza
     las gráficas para $P(l)$ con tres valores de $\mu$. ¿Qué pasa conforme el
-    valor crece? ¿Cómo lo interpretas si haces una caminata por CU?
+    valor crece? ¿Cómo lo interpretas si haces una caminata por CU? \\
+
+
   \item \textbf{Beneficios de los vuelos de Lévy:} Discute la eficiencia de los
     vuelos de Lévy para buscar recursos (como comida) escasos, en comparación
     con las caminatas aleatorias. ¿A qué animales podría beneficiar? ¿A los que
@@ -96,16 +81,62 @@ Añade tu código en un archivo separado.
 \begin{solucion}
 
 \paragraph{Parte 1}
-\begin{enumerate}
-  \item \pendiente{}
-  \item \pendiente{}
-\end{enumerate}
+Revisando el código, vi que la sección que se encarga de la aleatoriedad del movimiento de las hormigas es la siguiente:
+\begin{lstlisting}
+  to wiggle  ;; turtle procedure
+    rt random 40
+    lt random 40
+    if not can-move? 1 [ rt 180 ]
+  end
+  \end{lstlisting}
+
+  En resumen, lo que hace la función es buscar dos números aleatorios entre $0$ y $39$, y girar hacia la diferencia.
+  Esto de cierta forma podría representar una caminata aleatoria pues la dirección a la que van las hormigas sí es
+  ``aleatoria'', sin embargo, es una caminata aleatoria persistente, pues la dirección a la que van las hormigas sigue una tendencia
+  a ir derecho. Podemos hacer un histograma de los ángulos de giro de las hormigas y ver que el ángulo más frecuente es $0$, y el
+  histograma sigue una forma triangular. En una caminata aleatoria normal, no debería de haber mucha diferencia entre todos 
+  los ángulos, y deberían ser igualmente frecuentes, pero sigue siendo una caminata aleatoria. Por parte de la longitud de los pasos, 
+  siempre se dan pasos de $1$, y no cambia sin importar la dirección, y cuando una hormiga llega a los bordes, da un giro de $180$ 
+  grados y sigue caminando.
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{histograma_angulos}
+    \caption{Histograma de los ángulos de giro de \texttt{wiggle}}
+    \label{fig:histograma-angulos}
+  \end{figure}
 
 \paragraph{Parte 2}
-\begin{enumerate}
-  \item \pendiente{} \parencite{lakhloufi2025power}
-  \item \pendiente{}
-\end{enumerate}
+  \begin{enumerate}
+    \item Probé la implementación de los vuelos de Lévy con tres valores distintos de $\mu$.
+    Para un valor cercano a $1$, utilicé $1.1$. En este caso, las hormigas seguían una ruta casi
+    derecha y pasos largos en línea recta. Mientras más crecía $\mu$, las caminatas que hacían
+    se parecían más a una caminata aleatoria, con pasos cortos y cambios de dirección más frecuentes. 
+    Para $\mu=3$, parecía que las hormigas estaban haciendo una caminata aleatoria normal (por como implementé
+    los vuelos de Lévy). Conforme el valor de $\mu$ va creciendo, los pasos pequeños se vuelven más frecuentes
+    y los largos menos, mientras que a valores cercanos a $1$, los pasos largos son casi tan probables como los cortos. 
+    Si hiciéramos una caminata sobre CU con una $\mu$ cercana a $1$, sería como
+    ir visitando un lugar de cada facultad e ir brincando de facultad en facultad sin revisar muy a detalle
+    lo que hay ahí. Con una $\mu$ más grande, sería como ir caminando por CU y revisando cada facultad a detalle, 
+    pero sin ir muy lejos de la facultad en la que estás. Usé Python para graficar las distribuciones de las tres
+    $\mu$.
+
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width=0.8\textwidth]{levy_distribucion}
+      \caption{Distribución de longitudes de paso $P(l) = (\mu-1)\,l^{-\mu}$ para
+        $\mu = 1.1,\ 2,\ 3$.}
+      \label{fig:levy-distribucion}
+    \end{figure}
+    
+    \item Los vuelos de Lévy ayudan a recorrer grandes distancias en busca de comida, y son más eficientes 
+    que las caminatas aleatorias cuando la comida es escasa o se encuentra lejos. Sin embargo, pueden
+    resultar no tan eficientes al momento de buscar cosas más precisas o cercanas, pues al hacer pasos largos, 
+    se puede pasar por alto más fácilmente. Los animales que más se beneficiarían de los vuelos son aquellos
+    que tienen alimento escaso, principalmente aquellos que pueden recorrer grandes distancias en poco tiempo,
+    y cubrir áreas más grandes. Algunos ejemplos de animales que usan esta estrategia son: abejas, tiburones,
+    pez espada, entre otros, siendo de ayuda principalmente para animales que vuelan o nadan.
+  \end{enumerate}
 
 \paragraph{Parte 3}
 \begin{enumerate}
@@ -120,5 +151,6 @@ Añade tu código en un archivo separado.
 \end{enumerate}
 
 \paragraph{Código}
-\pendiente{nombre del archivo con el modelo modificado}
+El modelo modificado está en \texttt{src/hormigas/ants\_levy.nlogox} y el script de la
+\cref{fig:levy-distribucion} en \texttt{src/hormigas/levy\_distribucion.py}.
 \end{solucion}
