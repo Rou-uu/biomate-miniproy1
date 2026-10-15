@@ -140,14 +140,57 @@ Revisando el código, vi que la sección que se encarga de la aleatoriedad del m
 
 \paragraph{Parte 3}
 \begin{enumerate}
-  \item \pendiente{}
-  \item \pendiente{}
+  \item Para la implementación, cada hormiga que busca comida camina por segmentos rectos. Al empezar
+  un segmento, la hormiga gira un ángulo uniforme entre $0^\circ$ y $360^\circ$ y elige una longitud
+  $l = u^{-1/(\mu-1)}$, con $u$ uniforme en $(0,1]$, que sigue la distribución $P(l) \propto l^{-\mu}$
+  de la \cref{fig:levy-distribucion} (en el modelo el exponente $\mu$ se llama \texttt{eta}). Después,
+  la hormiga avanza $\lceil l \rceil$ ticks en línea recta, un parche por tick, y luego genera un nuevo
+  segmento de Lévy. Si la hormiga encuentra un rastro de feromonas, comida o un borde, se detendrá y
+  seguirá el rastro (en caso de que sean feromonas), tomará la comida y regresará al nido (si encontró
+  comida) o hará un segmento nuevo de Lévy (para el caso de que haya un borde). Los vuelos de Lévy solo
+  cambian la búsqueda: de regreso al nido con comida, la hormiga sigue usando el \texttt{wiggle} original.
+
+  \item En las simulaciones que observé, las hormigas parecían encontrar la comida más lejana más
+  rápidamente que siguiendo una caminata aleatoria; en la Parte~4 lo medimos. Para medir el rendimiento
+  de las hormigas, vamos a registrar el tick en el que la primera hormiga encuentra cada uno de los
+  montones de comida, cuando todos los montones hayan sido descubiertos y cuando terminen de llevar la
+  comida al nido.
 \end{enumerate}
 
 \paragraph{Parte 4}
 \begin{enumerate}
-  \item \pendiente{}
-  \item \pendiente{}
+  \item Para cada $\mu$ realice 600 simulaciones, y para cada simulación registré el tick en el que la primera 
+  hormiga encontró cada uno de los montones, cuando todos los montones fueron descubiertos y cuando terminaron 
+  de llevar la comida al nido. Primero, veremos por el tiempo que llevo llevar toda la comida al nido y descubrir
+  todos los montones:
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{comparacion_busqueda.pdf}
+    \caption{Distribución de las simulaciones para el tiempo que tardaron en descubrir todos los 
+    montones y llevar toda la comida al nido.}
+    \label{fig:comparacion-busqueda}
+  \end{figure}
+
+  Podemos ver que mientras que $\mu$ va creciendo, el tiempo que tardan en descubrir todos los montones y 
+  llevar toda la comida al nido también crece. Además, podemos ver que la caminata aleatoria original y
+  los vuelos de levy cuando $\mu$ es $1.1$ tienen un rendimiento similar, siendo los vuelos de Levy
+  ligeramente más eficientes y más constantes respecto a sus tiempos. Ahora, veremos por cada uno de los 
+  montones de comida cuales fueron los tiempo de cada uno de los parámetros:
+
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{histograma_descubrimientos.pdf}
+    \caption{Distribución de las simulaciones para el tiempo que tardaron en descubrir cada uno de los
+    montones de comida.}
+    \label{fig:histograma-descubrimientos}
+  \end{figure}
+
+  De igual manera, podemos ver que tanto la versión original de las caminatas aleatorias como el vuelo de 
+  Levy con $\mu = 1.1$ fueron muy similares, mientras que los vuelos de Levy con $\mu = 2$ y $\mu = 3$ 
+  fueron más lentos en descubrir los montones de comida y por lo tanto menos eficientes.
+
+
 \end{enumerate}
 
 \paragraph{Código}
