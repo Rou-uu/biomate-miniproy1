@@ -44,6 +44,10 @@
 \usepackage{subcaption}             % varias gráficas lado a lado en una figura
 \usepackage{enumitem}
 \usepackage{xcolor}
+% Gráficas hechas en LaTeX: los datos van en el .tex y el modelo se evalúa al
+% compilar, así que no hay que regenerar imágenes al cambiar un parámetro.
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
 
 % Dentro de flotantes y de sus leyendas se vuelve al interlineado sencillo.
 % setspace ya lo hace para los flotantes normales, pero NO para los colocados
@@ -115,6 +119,8 @@
 \Crefname{section}{Secci\'on}{Secciones}
 \crefname{table}{tabla}{tablas}
 \Crefname{table}{Tabla}{Tablas}
+\crefname{figure}{figura}{figuras}
+\Crefname{figure}{Figura}{Figuras}
 
 %--------------------- Ejercicios ----------------------------------------
 % Va después de cleveref porque registra sus propios nombres.

@@ -52,7 +52,50 @@ Referencias: \textcite{devries2006}; \textcite{mackey1977};
 
 \begin{solucion}
 \begin{enumerate}
-  \item \pendiente{}
+  \item Las gráficas las podemos hacer en Python. Con ayuda de la inteligencia artificial
+  se facilita el código para graficar las funciones $p_1(x)$ y $p_2(x)$ con diferentes parámetros
+  usando widgets en tiempo real. Además, podemos en una misma gráfica mostrar las variaciones
+  de los parámetros y ver cómo afectan la forma de las curvas. \textbf{Para el caso de $p_1$, tenemos
+  las siguientes curvas:}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{produccion_p1}
+    \caption{$p_1(x) = a\,x\,e^{-bx}$: a la izquierda variando $a$ con $b=1$ y
+      a la derecha variando $b$ con $a=2$.}
+    \label{fig:produccion-p1}
+  \end{figure}
+
+  Podemos ver que cuando $a$ es pequeño, el valor máximo de la curva es pequeño, y conforme
+  $a$ va creciendo, el valor máximo de la curva también crece. Sin embargo, la curva sigue
+  manteniendo una forma similar, cambiando la forma de la curva en la altura del valor máximo
+  estirándose de forma vertical. Como $p$ es la cantidad de glóbulos rojos producidos por la 
+  médula, el parámetro $a$ podría representar la cantidad de células que la médula
+  puede producir por cada glóbulo rojo.
+
+  Por otro lado, cuando $b$ es grande, la médula alcanza su punto máximo con menor cantidad de glóbulos rojos, y conforme $b$ disminuye
+  ese punto se recorre más, haciendo que la curva se acerque a 0 más lentamente y crezca verticalmente. Podría
+  ser algo similar a la tolerancia de la médula ósea a la cantidad de glóbulos rojos que hay en 
+  el cuerpo.
+
+  \textbf{Para el caso de $p_2$, obtenemos las siguientes gráficas:}
+  \begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{produccion_p2}
+    \caption{$p_2(x) = \dfrac{b\,\theta^m x}{\theta^m + x^m}$: a la izquierda
+    variando $b$ con $\theta=1$ y $m=4$, al centro variando $\theta$ con $b=2$
+    y $m=4$ y a la derecha variando $m$ con $b=2$ y $\theta=1$.}
+    \label{fig:produccion-p2}
+  \end{figure}
+
+  Similar a la gráfica anterior, el parámetro $b$ para $p_2$ también representa la cantidad de 
+  células que la médula puede producir por cada glóbulo rojo. El parámetro $\theta$ cambia
+  la escala de la curva, pero mantiene la misma forma por lo que podría representar la tolerancia
+  al igual que el parámetro $b$ de $p_1$. Sin embargo, el tercer parámetro sí cambia la forma de la
+  gráfica. En los valores $m < 1$, la curva no converge a 0 y muestra un crecimiento infinito. Cuando
+  $m = 1$ la curva se acerca asintóticamente a un valor máximo, y cuando $m > 1$ la curva converge a 0. 
+  Mientras el valor de $m$ crece en los intervalos $(1, \infty)$, la cantidad de células producidas
+  es mayor, pero también se detiene más de golpe.
+
   \item \pendiente{}
   \item \pendiente{}
   \item \pendiente{}

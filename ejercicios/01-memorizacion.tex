@@ -86,8 +86,94 @@ personal $\kappa$. La forma de obtener tu valor es la siguiente:
 
 \begin{solucion}
 \begin{enumerate}
-  \item \pendiente{}
-  \item \pendiente{}
+  \item En la \cref{tab:intentos-lista1} están los resultados de las diez
+    pruebas con la Lista~1. Cada intento corresponde a un minuto más de
+    estudio, y $L$ es la fracción de los 20 números recordados en su lugar.
+
+    \begin{table}[H]
+      \centering
+      \caption{Resultados de las pruebas con la Lista~1.}
+      \label{tab:intentos-lista1}
+      \begin{tabular}{ccc}
+        \toprule
+        Intento & Números recordados & $L$ \\
+        \midrule
+         1 &  2 & 0.10 \\
+         2 &  4 & 0.20 \\
+         3 &  8 & 0.40 \\
+         4 &  7 & 0.35 \\
+         5 & 10 & 0.50 \\
+         6 & 11 & 0.55 \\
+         7 & 11 & 0.55 \\
+         8 & 13 & 0.65 \\
+         9 & 14 & 0.70 \\
+        10 & 16 & 0.80 \\
+        \bottomrule
+      \end{tabular}
+    \end{table}
+  \item Para aproximar mi $\kappa$ personal, primero integramos la función:
+    \[
+      \frac{dL}{dt} = \kappa\,(1-L) \implies \int \frac{dL}{1-L} = \int \kappa\, dt
+      \implies -\ln|1-L| = \kappa t + C.
+    \]
+    Esta expresión ya representa una recta suponiendo que $y = -\ln|1-L|$, entonces
+    nuestra $\kappa$ representa la pendiente y $C$ es la ordenada al origen. Para determinar $C$, 
+    usamos el hecho de que cuando $t=0$, $L=0$, y usando el aproximador lineal de Google Sheets calculamos
+    que mi $\kappa$ personal es $0.1376$. Ahora, podemos graficar con mi $\kappa$ aproximada
+    y los valores que obtuve y tenemos la siguiente gráfica:
+
+    \begin{figure}[H]
+      \centering
+      \begin{tikzpicture}
+        \begin{axis}[
+            width=0.8\textwidth, height=0.5\textwidth,
+            xlabel={$t$ (min)}, ylabel={$L$},
+            xmin=0, xmax=10.5, ymin=0, ymax=1,
+            xtick={0,1,...,10},
+            ytick={0,0.2,...,1},
+            yticklabel style={/pgf/number format/fixed,
+                              /pgf/number format/precision=1},
+            grid=major, grid style={gray!25},
+            legend pos=south east, legend cell align=left,
+          ]
+          % Datos de la tabla de intentos (Lista 1)
+          \addplot[blue!70!black, mark=*, mark size=1.8pt, thin]
+            coordinates {(1,0.10) (2,0.20) (3,0.40) (4,0.35) (5,0.50)
+                         (6,0.55) (7,0.55) (8,0.65) (9,0.70) (10,0.80)};
+          \addlegendentry{Datos}
+          % Modelo L(t) = 1 - e^{-kappa t} con el kappa ajustado
+          \addplot[red!80!black, thick, domain=0:10.5, samples=100]
+            {1 - exp(-0.1376*x)};
+          \addlegendentry{Modelo $L(t)=1-e^{-\kappa t}$, $\kappa=0.1376$}
+        \end{axis}
+      \end{tikzpicture}
+      \caption{Fracción de la Lista~1 memorizada contra el tiempo de estudio,
+        junto con el modelo ajustado.}
+      \label{fig:memorizacion-lista1}
+    \end{figure}
+
+    Casi todos los puntos se ajustan bien, con ligero ruido en un intento donde se me olvido un número,
+    y en otro donde no me acordé de un número y lo puse en el lugar equivocado. Fuera de eso, el aproximado
+    se acerca bastante a lo que obtuve en mis pruebas.
+
+    Para calcular el tiempo que me llevaría aprenderme una lista de 20 y 100 números,
+    supondremos que nos aprendimos una lista cuando nos sabemos todos los número menos uno.
+    Haciendo el despeje para la ecuación:
+    \[
+      L(t) = 1 - e^{-\kappa t} \implies e^{-\kappa t} = 1 - L(t) \implies
+      -\kappa t = \ln(1 - L) \implies t = -\frac{\ln(1 - L)}{\kappa}
+    \]
+    \begin{itemize}
+      \item Lista de 20 números, entonces $L = \frac{19}{20} = 0.95$:
+      \[
+        t = -\frac{\ln(1 - L)}{\kappa} \implies t = -\frac{\ln(1 - 0.95)}{0.1376} \approx 21.77 \text{ minutos}
+      \]
+      \item Lista de 100 números, entonces $L = \frac{99}{100} = 0.99$:
+      \[
+        t = -\frac{\ln(1 - L)}{\kappa} \implies t = -\frac{\ln(1 - 0.99)}{0.1376} \approx 33.47 \text{ minutos}
+      \]
+    \end{itemize}
+
   \item \pendiente{}
 \end{enumerate}
 \end{solucion}
