@@ -210,16 +210,53 @@ Referencias: \textcite{devries2006}; \textcite{mackey1977};
 
 
   \item La función que estamos usando en este momento es $x_{n+1} = x_n - d(x_n) + p(x_n)$. Ahora, separando cada sección de la función
-  tenemos que $x_n$ representa los globulos rojos del turno $x_n$, $-d(x_n)$ representa la cantidad de glóbulos rojos que se pierden 
-  por muerte celular, y $p(x_n)$ representa la cantidad de glóbulos rojos que se generan. La idea será retrasar la producción de globulos
-  rojos por unos días, manteniendo la destrucción y cantidad en el turno $n$ de globulos rojos igual. Ahora, sea $k$ la cantidad de días
-  que queremos retrasar la producción de globulos rojos, entonces la función se modifica a $x_{n+1} = x_n - d(x_n) + p(x_n - k)$.
+  tenemos que $x_n$ representa los glóbulos rojos del día $n$, $-d(x_n)$ representa la cantidad de glóbulos rojos que se pierden 
+  por muerte celular, y $p(x_n)$ representa la cantidad de glóbulos rojos que se generan. La idea será retrasar la producción de glóbulos
+  rojos por unos días, manteniendo la destrucción y cantidad en el día $n$ de glóbulos rojos igual. Ahora, sea $k$ la cantidad de días
+  que queremos retrasar la producción de glóbulos rojos, entonces la función se modifica a $x_{n+1} = x_n - d(x_n) + p(x_{n-k})$.
 
-  Algunos cambios que trae este nuevo modelo es que ahora, necesitamos tener $k$ condiciones iniciales. También debido a que la cantidad
-  producida de globulos rojos va retrasada por $k$ días, el equilibrio al que se llega en más inestable debido a la tardía respuesta del
-  cuerpo a la cantidad de globulos rojos que hay en el cuerpo previo al cálculo para hacer más.
-  
-  \item \pendiente{}
-  \item \pendiente{}
+  Algunos cambios que trae este nuevo modelo son que ahora, necesitamos tener $k+1$ condiciones iniciales. También debido a que la cantidad
+  producida de glóbulos rojos va retrasada por $k$ días, el equilibrio al que se llega es más inestable debido a la tardía respuesta del
+  cuerpo a la cantidad de glóbulos rojos que hay en el cuerpo previo al cálculo para hacer más.
+
+  \item El modelo que se presenta en el artículo tiene ciertas diferencias con el modelo que estamos usando para el ejercicio. Primero, se
+  toma en cuenta que el tiempo es continuo, a diferencia del modelo que estamos usando que es discreto. Además, el modelo del artículo
+  propone tres ecuaciones para simular cada etapa de las células de forma distinta, y de forma implícita meter el retraso de la producción
+  de glóbulos rojos. Además, la idea del modelo que propusieron fue hacer un modelo cuyos parámetros fueran medibles en la vida real,
+  en lugar de usar parámetros sin un significado biológico. El modelo que proponen es el siguiente:
+
+  \[
+    \begin{aligned}
+      \dot x_1 &= \beta\,(X_0 - k_1 x_1) + F_b(x_3)\,x_1, \\
+      \dot x_2 &= \beta\,(k_1 x_1 - k_2 x_2), \\
+      \dot x_3 &= \beta\,(k_2 x_2 - \alpha\,x_3),
+    \end{aligned}
+    \qquad
+    F_b(x_3) = \gamma\,\frac{\text{Base} - x_3}{\text{Base}}.
+  \]
+
+  donde:
+  \begin{itemize}
+    \item $x_1$ son las células progenitoras que proliferan en respuesta a la eritropoyetina (EPO),
+      la hormona que estimula la producción de glóbulos rojos, $x_2$ son las células que siguen
+      madurando pero ya no responden a la EPO, y $x_3$ son los glóbulos rojos maduros en la sangre.
+    \item $X_0$ es la cantidad constante de células madre que entran a la primera etapa.
+    \item $k_1$ y $k_2$ son las tasas de paso de una etapa a la siguiente, y $\alpha = 1/120$ por día 
+      es la tasa de muerte de los glóbulos rojos, que viven unos 120 días.
+    \item $\beta$ y $\gamma$ son los parámetros propios de cada persona. $\beta$ es qué tan rápida es
+      su producción de celulas maduras en general y $\gamma$ qué tan fuerte reacciona a una pérdida de sangre.
+    \item $F_b$ representa el efecto de la EPO sin modelarla directamente. Cuando hay menos glóbulos rojos
+      que el nivel normal de la persona (\emph{Base}), $F_b > 0$ y las células de $x_1$ proliferan más (se incia producción).
+  \end{itemize}
+
+  Además, el modelo del artículo está construido para tener un solo equilibrio estable (\emph{Base}), al que
+  la población siempre regresa mientras que en nuestro modelo vimos que la población puede quedarse
+  oscilando o incluso comportarse de forma caótica.
+
+  \item Si pensamos en nuestros parámetros con las interpretaciones que les dimos, podríamos utilizar $c$ como
+    la tasa de muerte de las celulas, es decir podríamos hacer $c = \frac{1}{120}$. También podríamos usar
+    la base $$\text{Base}$$ del artículo para determinar el valor del equilibrio que buscamos, y ajustarlo
+    con los parámetros $b$ de $p_1$ y $\theta$ de $p_2$. También se puede interpretar la tolerancia de
+    la médula ósea como la fuerza de reacción a la pérdida de sangre, es decir, el parámetro $\gamma$ del artículo.
 \end{enumerate}
 \end{solucion}
